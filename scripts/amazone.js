@@ -82,14 +82,48 @@ productHtml+=`
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>
 `;
+/*
+data attribute :-
+ it is just an another html attribute . 
+ it allow us to attach any information to an element.
+ syntax :-
+ it start with data- after that yu can give any name and in the rhs side of = we give value 
+ ex:- data-product-id="${product.name} // line nmbr=85
+*/
 
 })
-console.log(productHtml);
+// console.log(productHtml);
 document.querySelector('.js-products-grid').innerHTML=productHtml;
+
+document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
+  button.addEventListener('click',()=>{
+    const productId=button.dataset.productId
+    let matchingItem;
+    cart.forEach((item)=>{
+      if(productId===item.productId){
+        matchingItem=item;
+      }
+    })
+    if(matchingItem){
+      matchingItem.quantity++;
+    }
+    else{
+      cart.push({
+      productId:productId,
+      quantity:1
+    })
+    }
+    
+    console.log(cart)
+  
+  })
+})
+
+
 
 
