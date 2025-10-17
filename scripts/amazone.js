@@ -33,13 +33,14 @@
 //   priceCents:1899
 // }
 // ]
- import  {cart} from '../data/cart.js';
- import { products } from '../data/products.js';
- 
-let productHtml='';
-products.forEach((product)=>{
+import { cart, addToCart} from '../data/cart.js';
+import { products } from '../data/products.js';
 
-productHtml+=`
+
+let productHtml = '';
+products.forEach((product) => {
+
+  productHtml += `
 <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -52,14 +53,14 @@ productHtml+=`
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${product.rating.stars*10}.png">
+              src="images/ratings/rating-${product.rating.stars * 10}.png">
             <div class="product-rating-count link-primary">
               ${product.rating.count}
             </div>
           </div>
 
           <div class="product-price">
-            $${(product.priceCents/100).toFixed(2)}
+            $${(product.priceCents / 100).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
@@ -89,46 +90,33 @@ productHtml+=`
           </button>
         </div>
 `;
-/*
-data attribute :-
- it is just an another html attribute . 
- it allow us to attach any information to an element.
- syntax :-
- it start with data- after that yu can give any name and in the rhs side of = we give value 
- ex:- data-product-id="${product.name} // line nmbr=85
-*/
+  /*
+  data attribute :-
+   it is just an another html attribute . 
+   it allow us to attach any information to an element.
+   syntax :-
+   it start with data- after that yu can give any name and in the rhs side of = we give value 
+   ex:- data-product-id="${product.name} // line nmbr=85
+  */
 
 })
 // console.log(productHtml);
-document.querySelector('.js-products-grid').innerHTML=productHtml;
+document.querySelector('.js-products-grid').innerHTML = productHtml;
 
-document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
-  button.addEventListener('click',()=>{
-    const productId=button.dataset.productId
-    let matchingItem;
-    cart.forEach((item)=>{
-      if(productId===item.productId){
-        matchingItem=item;
-      }
-    })
-    if(matchingItem){
-      matchingItem.quantity++;
-    }
-    else{
-      cart.push({
-      productId:productId,
-      quantity:1
-    })
-    }
 
-    let cartQuantity=0;
-    cart.forEach((item)=>{
-      cartQuantity+=item.quantity;
-    })
-document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
-    
-    console.log(cart)
-  
+function updateCartQuantity() {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity +=cartItem.quantity;
+  })
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
+
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const productId = button.dataset.productId
+    addToCart(productId)
+    updateCartQuantity()
   })
 })
 
