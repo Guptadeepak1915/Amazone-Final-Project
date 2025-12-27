@@ -1,40 +1,6 @@
-// const products=[{
-//   image:"images/products/athletic-cotton-socks-6-pairs.jpg",
-//   name:'Acer Laptop',
-//   rating:{
-//     stars:4.5,
-//     count:87
-//   },
-//   priceCents:1090
-// },{
-//   image:"images/products/intermediate-composite-basketball.jpg",
-//   name:'PCs',
-//   rating:{
-//     stars:4,
-//     count:127
-//   },
-//   priceCents:2095
-// },{
-//   image:"images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
-//   name:'Make Up ',
-//   rating:{
-//     stars:4.5,
-//     count:56
-//   },
-//   priceCents:799
-// },
-// {
-//   image:"images/products/black-2-slot-toaster.jpg",
-//   name:"black-2-slot-toaster",
-//   rating:{
-//     stars:4.5,
-//     count:56
-//   },
-//   priceCents:1899
-// }
-// ]
 import { cart, addToCart} from '../data/cart.js';
 import { products } from '../data/products.js';
+import { formatCurrency } from './utils/money.js';
 
 
 let productHtml = '';
@@ -60,7 +26,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            $${(product.priceCents / 100).toFixed(2)}
+            $${formatCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
