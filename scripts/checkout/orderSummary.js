@@ -4,13 +4,12 @@ import { formatCurrency } from "../utils/money.js";
 import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js";// this is external library which is ESM version this is for example 
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions , getDeliveryOption} from '../../data/deliveryOptions.js'
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 
 
 // console.log(hello());
-
-
-// const today = dayjs();
+// const today = dayjs();   // this comments code were practice there is no use in this code just for practice 
 // const deliveryDate = today.add(7, 'Days')
 // console.log(deliveryDate.format('dddd,MMMM D'))
 
@@ -142,7 +141,7 @@ import { deliveryOptions , getDeliveryOption} from '../../data/deliveryOptions.j
           // console.log(cart);
           const container = document.querySelector(`.js-cart-item-container-${productId}`)
           container.remove();
-
+          renderPaymentSummary();
 
         })
       })
@@ -155,6 +154,7 @@ import { deliveryOptions , getDeliveryOption} from '../../data/deliveryOptions.j
           // const {productId,deliveryOptionId}=element.dataset  // it is short hand properties written as two line above 
           updateDeliveryOption(productId,deliveryOptionId);
           renderOrderSummary();
+          renderPaymentSummary();// regenerate the payment summary 
         })
       })
   }
