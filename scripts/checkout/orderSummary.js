@@ -1,9 +1,9 @@
 import { cart, removeFromCart,updateDeliveryOption } from "../../data/cart.js"
-import { products } from "../../data/products.js"
+import { products, getProduct} from "../../data/products.js"
 import { formatCurrency } from "../utils/money.js";
 import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js";// this is external library which is ESM version this is for example 
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import { deliveryOptions } from '../../data/deliveryOptions.js'
+import { deliveryOptions , getDeliveryOption} from '../../data/deliveryOptions.js'
 
 
 
@@ -19,22 +19,23 @@ import { deliveryOptions } from '../../data/deliveryOptions.js'
     let curtSummaryHtml = '';
     cart.forEach((cartItem) => {
       const productId = cartItem.productId;
-      let matchingProduct;
 
-      products.forEach((product) => {
-        if (productId === product.id) {
-          matchingProduct = product;
-        }
-      });
+      const matchingProduct = getProduct(productId);
+      // products.forEach((product) => {
+      //   if (productId === product.id) { // we have created the function in product.js for these code so we comment this 
+      //     matchingProduct = product;
+      //   }
+      // });
 
       const deliveryOptionId =cartItem.deliveryOptionId;
-      let deliveryOption;
 
-      deliveryOptions.forEach((option)=>{
-        if(option.id === deliveryOptionId){
-          deliveryOption=option;
-        }
-      })
+      const deliveryOption = getDeliveryOption(deliveryOptionId);
+
+      // deliveryOptions.forEach((option)=>{
+      //   if(option.id === deliveryOptionId){ // also for this we created afunction in deliveryOption.js so just we import and use them 
+      //     deliveryOption=option;
+      //   }
+      // })
         const today =dayjs();
         const deliveryDate=today.add(
           deliveryOption.deliveryDays, // how many days 
