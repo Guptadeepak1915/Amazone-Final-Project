@@ -1,6 +1,4 @@
-import {formatCurrency} from '../scripts/utils/money.js';
-import { renderPaymentSummary } from '../scripts/checkout/paymentSummary.js';
-
+import {formatCurrency} from '../../scripts/utils/money.js';
 describe('test Suite : Format Currency',()=>{ // in jasmine to create a test suite use describe() function 
   it('Convert Cents Into $(Doller)',()=>{
     expect(formatCurrency(2095)).toEqual('20.95');
@@ -13,9 +11,7 @@ describe('test Suite : Format Currency',()=>{ // in jasmine to create a test sui
   });
 });
 
-// describe('test Suite: Payment Summary ',()=>{
-//   it('productPriceCents',()=>{
-//     expect()
-//   })
-// })
+
+
+
 
