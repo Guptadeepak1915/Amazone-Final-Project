@@ -1,4 +1,5 @@
 import {formatCurrency} from '../scripts/utils/money.js';
+
 // basics cases
 console.log('test Suite : format Currency');
 console.log('convert cents into doller $');
