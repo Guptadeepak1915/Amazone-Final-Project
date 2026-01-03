@@ -1,4 +1,4 @@
-import { addToCart ,cart,loadFromStorage, updateDeliveryOption} from "../../data/cart.js"
+import { addToCart ,cart,loadFromStorage} from "../../data/cart.js"
 // it is incomplete . mujhe thoda samjh nahi aaya  
 describe('test Suite: Add to Cart ',()=>{
   it('add anexisting product to the cart ',()=>{
